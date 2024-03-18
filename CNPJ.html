@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <title>CNPJ</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <!-- Inicio do formulario -->
+  <form method="get" action=".">
+<input name="pesquisaCNPJ" id="pesquisaCNPJ" type="number">
+<input type="button" value="Buscar no receitaws" onclick="buscarEnderecoNoViaCNPJ()"/>
+<br><br>
+
+    <label>Razão social:
+      <input name="nome_social" type="text" id="nome_social" size="60" /></label><br />
+
+    <label>Nome fantasia:
+      <input name="nome_fantasia" type="text" id="nome_fantasia" size="40" /></label><br />
+
+    <label>Bairro:
+      <input name="Bairro" type="text" id="Bairro" size="40" /></label><br />
+
+    <label>capital_social:
+      <input name="capital_social" type="text" id="capital_social" size="40" /></label><br />
+
+    <label>CEP:
+      <input name="CEP" type="text" id="CEP" size="40" /></label><br />
+
+    <label>Ultima_atualizacao
+      <input name="Ultima_atualizacao" type="text" id="Ultima_atualizacao" size="40" /></label><br />
+
+    <label>Status:
+      <input name="status" type="text" id="status" size="40" /></label><br />
+
+    <label>Porte:
+      <input name="porte" type="text" id="porte" size="40" /></label><br />
+
+      <label>abertura:
+        <input name="abertura" type="text" id="abertura" size="40" /></label><br />
+
+        <label>atividade_principal:
+          <input name="atividade_principal" type="text" id="atividade_principal" size="40" /></label><br />
+        
+  </form>
+  <script>
+    function buscarEnderecoNoViaCNPJ() {
+    var cnpj = document.getElementById("pesquisaCNPJ").value;
+      fetch("https://cors-anywhere.herokuapp.com/https://receitaws.com.br/v1/cnpj/" + cnpj).then((response) => {
+        if(response.ok) {
+          return response.json();
+        }
+      }).then((dados) => {
+        console.log(dados)
+        document.getElementById("nome_social").value = dados.nome;
+        document.getElementById("nome_fantasia").value = dados.fantasia;
+        document.getElementById("Bairro").value = dados.bairro;
+        document.getElementById("capital_social").value = dados.capital;
+        document.getElementById("CEP").value = dados.cep;
+        document.getElementById("Ultima_atualizacao").value = dados.atualizacaoa;
+        document.getElementById("porte").value = dados.porte;
+        document.getElementById("abertura").value = dados.abertura;
+        document.getElementById("atividade_principal").value = dados.atividade_principal;
+     
+      });
+    }
+  </script>
+</body>
+
+</html>
